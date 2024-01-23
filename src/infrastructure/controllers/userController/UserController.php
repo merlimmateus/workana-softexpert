@@ -79,15 +79,21 @@ class UserController
     /**
      * @throws NotSupported
      */
-    public function login($username, $password)
-    {
+    public function login($username, $password) {
         $user = $this->userService->getUserByUsername($username);
         if (!$user || !$this->verifyPassword($password, $user->getPassword())) {
             return null;
         }
 
         $payload = ['userId' => $user->getId(), 'username' => $user->getUsername()];
-        return $this->jwtService->createToken($payload);
+        $token = $this->jwtService->createToken($payload);
+
+        $userResponse = new UserResponse($user);
+
+        return [
+            'token' => $token,
+            'user' => $userResponse
+        ];
     }
 
     private function verifyPassword($inputPassword, $storedPassword): bool

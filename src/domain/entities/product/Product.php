@@ -48,30 +48,32 @@ class Product
      */
     private $excluded = false;
 
-    public function isExcluded()
+    public function isExcluded(): bool
     {
         return $this->excluded;
     }
 
-    public function setExcluded($excluded)
+    public function setExcluded(bool $excluded)
     {
         $this->excluded = $excluded;
     }
+
+
 
     /**
      * @ORM\ManyToOne(targetEntity="workanaSoftexpert\domain\entities\user\User")
      * @ORM\JoinColumn(name="created_by_user_id", referencedColumnName="id")
      */
-    private $createdByUser;
+    private $createdByUserId;
 
     public function getCreatedByUser()
     {
-        return $this->createdByUser;
+        return $this->createdByUserId;
     }
 
     public function setCreatedByUser($createdByUser)
     {
-        $this->createdByUser = $createdByUser;
+        $this->createdByUserId = $createdByUser;
     }
 
 

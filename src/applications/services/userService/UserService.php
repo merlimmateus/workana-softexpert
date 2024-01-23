@@ -55,7 +55,6 @@ class UserService
             throw new \RuntimeException("User not found.");
         }
 
-        // Atualização dos dados do usuário
         $user->setUsername($userData['username'] ?? $user->getUsername());
         if (!empty($userData['password'])) {
             $user->setPassword(password_hash($userData['password'], PASSWORD_DEFAULT));
@@ -65,7 +64,6 @@ class UserService
             $user->setIsActive($userData['isActive']);
         }
 
-        // Atualizar grupo do usuário se necessário
         if (isset($userData['groupId'])) {
             $userGroup = $this->userGroupRepository->find($userData['groupId']);
             if (!$userGroup) {
@@ -118,7 +116,8 @@ class UserService
         return $user;
     }
 
-    public function getAllUsers() {
+    public function getAllUsers(): array
+    {
         return $this->userRepository->findAll();
     }
 

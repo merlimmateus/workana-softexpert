@@ -7,6 +7,7 @@ class UserResponse
 {
     public $id;
     public $username;
+
     public $name;
     public $groupId;
     public $isActive;

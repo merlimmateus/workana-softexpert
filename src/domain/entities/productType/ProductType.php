@@ -2,10 +2,9 @@
 namespace workanaSoftexpert\domain\entities\productType;
 
 use Doctrine\ORM\Mapping as ORM;
-use workanaSoftexpert\domain\entities\Repository\ProductTypeRepository;
 
 /**
- * @ORM\Entity(repositoryClass=ProductTypeRepository::class)
+ * @ORM\Entity
  * @ORM\Table(name="product_types")
  */
 class ProductType
@@ -38,7 +37,7 @@ class ProductType
      */
     private $excluded = false;
 
-    public function isExcluded()
+    public function isExcluded(): bool
     {
         return $this->excluded;
     }
@@ -105,10 +104,6 @@ class ProductType
     public function setTaxPercentage($taxPercentage)
     {
         $this->taxPercentage = $taxPercentage;
-    }
-
-    public function setCreatedByUserId($getCreatedByUserId)
-    {
     }
 
 }

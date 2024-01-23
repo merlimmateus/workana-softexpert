@@ -95,9 +95,9 @@ switch ($requestMethod) {
         } elseif ($requestUri === '/login') {
             $username = $requestData['username'];
             $password = $requestData['password'];
-            $token = $userController->login($username, $password);
-            if ($token) {
-                echo json_encode(['token' => $token]);
+            $loginResult = $userController->login($username, $password);
+            if ($loginResult) {
+                echo json_encode($loginResult);
             } else {
                 header('HTTP/1.1 401 Unauthorized');
                 echo json_encode(['message' => 'Login failed']);

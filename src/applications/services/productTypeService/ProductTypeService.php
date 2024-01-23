@@ -72,7 +72,7 @@ class ProductTypeService {
         $this->productTypeRepository->save($productType);
     }
 
-    public function getAllProductsTypes() {
+    public function getAllProductTypes() {
         return $this->productTypeRepository->findAll();
     }
 

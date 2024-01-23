@@ -11,6 +11,8 @@ class ProductResponse {
     public $updatedAt;
     public $createdByUserId;
 
+    public $excluded;
+
     public function __construct($product) {
         $this->id = $product->getId();
         $this->name = $product->getName();
@@ -19,6 +21,6 @@ class ProductResponse {
         $this->createdAt = $product->getCreatedAt()->format('Y-m-d H:i:s');
         $this->updatedAt = $product->getUpdatedAt() ? $product->getUpdatedAt()->format('Y-m-d H:i:s') : null;
         $this->createdByUserId = $product->getCreatedByUser()->getId();
+        $this->excluded = $product->isExcluded();
     }
-
 }

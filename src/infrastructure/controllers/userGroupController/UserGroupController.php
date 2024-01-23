@@ -3,6 +3,7 @@ namespace workanaSoftexpert\infrastructure\controllers\userGroupController;
 
 use workanaSoftexpert\applications\services\userGroupService\UserGroupService;
 use workanaSoftexpert\core\dto\userGroupCreateRequest\UserGroupCreateRequest;
+use workanaSoftexpert\core\dto\userGroupResponse\UserGroupResponse;
 use workanaSoftexpert\domain\entities\userGroup\UserGroup;
 
 class UserGroupController
@@ -24,8 +25,8 @@ class UserGroupController
 
     public function getAllUserGroups() {
         $users = $this->userGroupService->getAllUsersGroups();
-        return json_encode(array_map(function() {
-            return new UserGroup();
+        return json_encode(array_map(function($user) {
+            return new UserGroupResponse($user);
         }, $users));
     }
 

@@ -46,7 +46,7 @@ class ProductTypeController
     }
 
     public function getAllProductTypes() {
-        $productTypes = $this->productTypeService->getAllProductsTypes();
+        $productTypes = $this->productTypeService->getAllProductTypes();
         return json_encode(array_map(function($productType) {
             return new ProductTypeResponse($productType);
         }, $productTypes));
