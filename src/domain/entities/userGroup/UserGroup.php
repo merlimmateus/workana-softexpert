@@ -1,6 +1,6 @@
 <?php
 
-namespace domain\entities\userGroup;
+namespace YourNamespace\domain\entities\userGroup;
 
 use Doctrine\ORM\Mapping as ORM;
 

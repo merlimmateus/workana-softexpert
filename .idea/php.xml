@@ -35,33 +35,35 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/common" />
       <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/symfony/console" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/symfony/string" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/symfony/polyfill-ctype" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/symfony/service-contracts" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/symfony/polyfill-intl-normalizer" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/symfony/polyfill-php72" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/symfony/polyfill-mbstring" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/symfony/polyfill-intl-grapheme" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/symfony/polyfill-php80" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/cache" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/dbal" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/common" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/orm" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/collections" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/instantiator" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/event-manager" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/inflector" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/persistence" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/deprecations" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/lexer" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/composer" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/psr/container" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/psr/cache" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/psr/log" />
-      <path value="$PROJECT_DIR$/../workana-softexpert/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor/symfony/string" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/service-contracts" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/cache" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/dbal" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/common" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/orm" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/event-manager" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/deprecations" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/lexer" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
     </include_path>
   </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.0" />
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>

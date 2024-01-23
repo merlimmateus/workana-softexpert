@@ -3,7 +3,9 @@
     "doctrine/orm": "^2.8",
     "doctrine/dbal": "^3.0",
     "doctrine/cache": "^1.11",
-    "doctrine/annotations": "^2.0"
+    "doctrine/annotations": "^2.0",
+    "ext-json": "*",
+    "firebase/php-jwt": "^6.10"
   },
   "autoload": {
     "psr-4": {
