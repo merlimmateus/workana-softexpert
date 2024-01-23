@@ -1,5 +1,5 @@
 <?php
-namespace YourNamespace\domain\entities\product;
+namespace workanaSoftexpert\domain\entities\product;
 
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
@@ -28,7 +28,7 @@ class Product
     private $price;
 
     /**
-     * @ORM\ManyToOne(targetEntity="YourNamespace\domain\entities\productType\ProductType")
+     * @ORM\ManyToOne(targetEntity="workanaSoftexpert\domain\entities\productType\ProductType")
      * @ORM\JoinColumn(name="product_type_id", referencedColumnName="id")
      */
     private $productType;
@@ -44,9 +44,37 @@ class Product
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
-    private $createdByUserId;
+    private $excluded = false;
+
+    public function isExcluded()
+    {
+        return $this->excluded;
+    }
+
+    public function setExcluded($excluded)
+    {
+        $this->excluded = $excluded;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="workanaSoftexpert\domain\entities\user\User")
+     * @ORM\JoinColumn(name="created_by_user_id", referencedColumnName="id")
+     */
+    private $createdByUser;
+
+    public function getCreatedByUser()
+    {
+        return $this->createdByUser;
+    }
+
+    public function setCreatedByUser($createdByUser)
+    {
+        $this->createdByUser = $createdByUser;
+    }
+
+
 
     /**
      * @return mixed
@@ -142,22 +170,6 @@ class Product
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCreatedByUserId()
-    {
-        return $this->createdByUserId;
-    }
-
-    /**
-     * @param mixed $createdByUserId
-     */
-    public function setCreatedByUserId($createdByUserId)
-    {
-        $this->createdByUserId = $createdByUserId;
     }
 
     /**

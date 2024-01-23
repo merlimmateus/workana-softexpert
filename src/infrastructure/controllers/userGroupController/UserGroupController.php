@@ -1,8 +1,9 @@
 <?php
-namespace YourNamespace\infrastructure\controllers\userGroupController;
+namespace workanaSoftexpert\infrastructure\controllers\userGroupController;
 
-use YourNamespace\applications\services\userGroupService\UserGroupService;
-use YourNamespace\core\dto\UserGroupCreateRequest\UserGroupCreateRequest;
+use workanaSoftexpert\applications\services\userGroupService\UserGroupService;
+use workanaSoftexpert\core\dto\userGroupCreateRequest\UserGroupCreateRequest;
+use workanaSoftexpert\domain\entities\userGroup\UserGroup;
 
 class UserGroupController
 {
@@ -19,6 +20,13 @@ class UserGroupController
         $this->userGroupService->createUserGroup($userGroupCreateRequest);
 
         return json_encode(['message' => 'User group created successfully']);
+    }
+
+    public function getAllUserGroups() {
+        $users = $this->userGroupService->getAllUsersGroups();
+        return json_encode(array_map(function() {
+            return new UserGroup();
+        }, $users));
     }
 
 }

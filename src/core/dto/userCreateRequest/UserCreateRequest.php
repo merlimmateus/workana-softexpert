@@ -1,5 +1,5 @@
 <?php
-namespace YourNamespace\core\dto\UserCreateRequest;
+namespace workanaSoftexpert\core\dto\userCreateRequest;
 
 class UserCreateRequest
 {

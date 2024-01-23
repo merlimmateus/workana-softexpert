@@ -1,10 +1,10 @@
 <?php
 
-namespace YourNamespace\applications\services\userGroupService;
+namespace workanaSoftexpert\applications\services\userGroupService;
 
-use YourNamespace\core\dto\UserGroupCreateRequest\UserGroupCreateRequest;
-use YourNamespace\domain\repositories\userGroupRepository\UserGroupRepository;
-use YourNamespace\domain\entities\userGroup\UserGroup;
+use workanaSoftexpert\core\dto\userGroupCreateRequest\UserGroupCreateRequest;
+use workanaSoftexpert\domain\repositories\userGroupRepository\UserGroupRepository;
+use workanaSoftexpert\domain\entities\userGroup\UserGroup;
 
 class UserGroupService
 {
@@ -21,6 +21,10 @@ class UserGroupService
         $userGroup->setName($request->name);
 
         $this->userGroupRepository->save($userGroup);
+    }
+
+    public function getAllUsersGroups() {
+        return $this->userGroupRepository->findAll();
     }
 
 }

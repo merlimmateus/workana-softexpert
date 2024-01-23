@@ -1,5 +1,5 @@
 <?php
-namespace YourNamespace\core\dto\UserGroupCreateRequest;
+namespace workanaSoftexpert\core\dto\userGroupCreateRequest;
 
 class UserGroupCreateRequest
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace YourNamespace\applications\services\jwtService;
+namespace workanaSoftexpert\applications\services\jwtService;
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;

@@ -1,14 +1,14 @@
 <?php
-namespace YourNamespace\applications\services\userService;
+namespace workanaSoftexpert\applications\services\userService;
 
 use Doctrine\ORM\Exception\NotSupported;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\TransactionRequiredException;
-use YourNamespace\core\dto\UserCreateRequest\UserCreateRequest;
-use YourNamespace\domain\entities\user\User;
-use YourNamespace\domain\repositories\userGroupRepository\UserGroupRepository;
-use YourNamespace\domain\repositories\userRepository\UserRepository;
+use workanaSoftexpert\core\dto\userCreateRequest\UserCreateRequest;
+use workanaSoftexpert\domain\entities\user\User;
+use workanaSoftexpert\domain\repositories\userGroupRepository\UserGroupRepository;
+use workanaSoftexpert\domain\repositories\userRepository\UserRepository;
 
 class UserService
 {
@@ -55,19 +55,28 @@ class UserService
             throw new \RuntimeException("User not found.");
         }
 
-        $userGroup = $this->userGroupRepository->find($userData['groupId']);
-        if (!$userGroup) {
-            throw new \RuntimeException("UserGroup with id {$userData['groupId']} not found.");
+        // Atualização dos dados do usuário
+        $user->setUsername($userData['username'] ?? $user->getUsername());
+        if (!empty($userData['password'])) {
+            $user->setPassword(password_hash($userData['password'], PASSWORD_DEFAULT));
+        }
+        $user->setName($userData['name'] ?? $user->getName());
+        if (isset($userData['isActive'])) {
+            $user->setIsActive($userData['isActive']);
         }
 
-        $user->setUsername($userData['username']);
-        $user->setPassword($userData['password']);
-        $user->setName($userData['name']);
-        $user->setGroup($userGroup);
-        $user->setIsActive($userData['isActive'] ?? true);
+        // Atualizar grupo do usuário se necessário
+        if (isset($userData['groupId'])) {
+            $userGroup = $this->userGroupRepository->find($userData['groupId']);
+            if (!$userGroup) {
+                throw new \RuntimeException("UserGroup with id {$userData['groupId']} not found.");
+            }
+            $user->setGroup($userGroup);
+        }
 
         $this->userRepository->save($user);
     }
+
     /**
      * @throws OptimisticLockException
      * @throws ORMException
@@ -81,7 +90,6 @@ class UserService
             throw new \RuntimeException("User not found.");
         }
 
-        // Em vez de excluir, defina o usuário como inativo
         $user->setIsActive(false);
         $this->userRepository->save($user);
     }
@@ -108,6 +116,10 @@ class UserService
         }
 
         return $user;
+    }
+
+    public function getAllUsers() {
+        return $this->userRepository->findAll();
     }
 
 }

@@ -1,7 +1,7 @@
 <?php
-namespace YourNamespace\core\dto\UserResponse;
+namespace workanaSoftexpert\core\dto\userResponse;
 
-use YourNamespace\domain\entities\user\User;
+use workanaSoftexpert\domain\entities\user\User;
 
 class UserResponse
 {
