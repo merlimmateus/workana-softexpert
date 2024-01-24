@@ -30,11 +30,17 @@ class SellService {
      */
     public function createSell(SellCreateRequest $request): Sell {
         $product = $this->productRepository->find($request->productId);
+
+        if ($product->isExcluded()) {
+            throw new \RuntimeException("Cannot create sell with an excluded product.");
+        }
+
         $user = $this->userRepository->find($request->createdByUserId);
 
         $sell = new Sell();
         $sell->setProduct($product);
         $sell->setQuantity($request->quantity);
+        $sell->setName($request->name);
         $sell->setCreatedByUser($user);
 
         $this->sellRepository->save($sell);
@@ -48,18 +54,24 @@ class SellService {
      * @throws TransactionRequiredException
      * @throws EntityNotFoundException
      */
-    public function updateSell($sellId, SellCreateRequest $request) {
+    public function updateSell($sellId, SellCreateRequest $request):Sell {
         $sell = $this->sellRepository->find($sellId);
         if (!$sell) {
             throw new EntityNotFoundException("Sell not found.");
         }
 
         $product = $this->productRepository->find($request->productId);
+
+        if ($product->isExcluded()) {
+            throw new \RuntimeException("Cannot create sell with an excluded product.");
+        }
+
         $user = $this->userRepository->find($request->createdByUserId);
 
         $sell->setProduct($product);
         $sell->setQuantity($request->quantity);
         $sell->setCreatedByUser($user);
+        $sell->setName($request->name);
 
         $this->sellRepository->save($sell);
 

@@ -51,7 +51,8 @@ class SellController {
      * @throws EntityNotFoundException
      */
     public function updateSell($requestData, $sellId) {
-        $sell = $this->sellService->updateSell($sellId, $requestData);
+        $sellRequest = new SellCreateRequest($requestData);
+        $sell = $this->sellService->updateSell($sellId, $sellRequest);
         return json_encode(new SellResponse($sell));
     }
 

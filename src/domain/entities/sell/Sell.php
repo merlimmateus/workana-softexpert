@@ -25,6 +25,11 @@ class Sell
     private $product;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $quantity;
@@ -109,5 +114,23 @@ class Sell
     {
         $this->createdAt = $createdAt;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+
 
 }

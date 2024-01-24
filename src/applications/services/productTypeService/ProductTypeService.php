@@ -30,10 +30,9 @@ class ProductTypeService {
         $productType->setName($request->getName());
         $productType->setTaxPercentage($request->getTaxPercentage());
 
-        // Busque o objeto User usando o UserRepository
         $user = $this->userRepository->find($request->getCreatedByUserId());
         if (!$user) {
-            throw new \Exception("User not found.");
+            throw new \RuntimeException("User not found.");
         }
 
         $productType->setCreatedByUser($user);
@@ -48,7 +47,7 @@ class ProductTypeService {
     public function updateProductType($productTypeId, $data) {
         $productType = $this->productTypeRepository->find($productTypeId);
         if (!$productType) {
-            throw new \Exception("Product type not found.");
+            throw new \RuntimeException("Product type not found.");
         }
         if (isset($data['name'])) {
             $productType->setName($data['name']);

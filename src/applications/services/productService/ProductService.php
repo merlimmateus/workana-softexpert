@@ -37,9 +37,13 @@ class ProductService
             throw new \RuntimeException("Product type not found.");
         }
 
+        if ($productType->isExcluded()) {
+            throw new \RuntimeException("Cannot create product with an excluded product type.");
+        }
+
         $user = $this->userRepository->find($request->getCreatedByUserId());
         if (!$user) {
-            throw new \Exception("User not found."); // Ou trate o erro conforme necessário
+            throw new \RuntimeException("User not found."); // Ou trate o erro conforme necessário
         }
 
         $product = new Product();
@@ -69,6 +73,10 @@ class ProductService
         $productType = $this->productTypeRepository->find($request->productTypeId);
         if (!$productType) {
             throw new \RuntimeException("Product type not found.");
+        }
+
+        if ($productType->isExcluded()) {
+            throw new \RuntimeException("Cannot create product with an excluded product type.");
         }
 
         $product->setName($request->name);
