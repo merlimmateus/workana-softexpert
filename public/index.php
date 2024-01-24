@@ -21,6 +21,23 @@ use workanaSoftexpert\infrastructure\controllers\sellController\SellController;
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../config/database.php';
 
+
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Max-Age: 86400');
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+        header("Access-Control-Allow-Headers:{$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+    exit(0);
+}
+
 $userRepository = new UserRepository($entityManager);
 $userGroupRepository = new UserGroupRepository($entityManager);
 $userService = new UserService($userRepository, $userGroupRepository);
@@ -42,11 +59,6 @@ $productTypeController = new ProductTypeController($productTypeService);
 $sellRepository = new SellRepository($entityManager);
 $sellService = new SellService($sellRepository, $productRepository, $userRepository);
 $sellController = new SellController($sellService);
-
-// Handle CORS
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Content-Type: application/json');
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 $requestUri = $_SERVER['REQUEST_URI'];
@@ -71,6 +83,9 @@ function isAuthorized($jwtService): bool
 }
 
 switch ($requestMethod) {
+    case 'OPTIONS':
+        header('HTTP/1.1 200 OK');
+        break;
     case 'GET':
         if ($requestUri === '/users' && isAuthorized($jwtService)) {
             echo $userController->getAllUsers();
