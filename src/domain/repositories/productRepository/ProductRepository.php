@@ -1,7 +1,7 @@
 <?php
-namespace YourNamespace\domain\repositories\productRepository;
+namespace workanaSoftexpert\domain\repositories\productRepository;
 
-use YourNamespace\domain\entities\product\Product;
+use workanaSoftexpert\domain\entities\product\Product;
 
 class ProductRepository {
     private $entityManager;
@@ -19,4 +19,7 @@ class ProductRepository {
         return $this->entityManager->find(Product::class, $id);
     }
 
+    public function findAll() {
+        return $this->entityManager->getRepository(Product::class)->findAll();
+    }
 }

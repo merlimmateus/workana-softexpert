@@ -1,5 +1,5 @@
 <?php
-namespace YourNamespace\domain\entities\user;
+namespace workanaSoftexpert\domain\entities\user;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,7 +32,7 @@ class User
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="YourNamespace\domain\entities\userGroup\UserGroup")
+     * @ORM\ManyToOne(targetEntity="workanaSoftexpert\domain\entities\userGroup\UserGroup")
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
      */
     private $group;
@@ -42,7 +42,7 @@ class User
      */
     private $isActive;
 
-    public function getIsActive()
+    public function getIsActive(): bool
     {
         return $this->isActive;
     }

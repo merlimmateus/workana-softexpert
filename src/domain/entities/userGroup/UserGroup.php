@@ -1,7 +1,5 @@
 <?php
-
-namespace YourNamespace\domain\entities\userGroup;
-
+namespace workanaSoftexpert\domain\entities\userGroup;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

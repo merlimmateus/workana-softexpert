@@ -1,7 +1,7 @@
 <?php
-namespace YourNamespace\domain\repositories\userGroupRepository;
+namespace workanaSoftexpert\domain\repositories\userGroupRepository;
 
-use YourNamespace\domain\entities\userGroup\UserGroup;
+use workanaSoftexpert\domain\entities\userGroup\UserGroup;
 
 class UserGroupRepository
 {
@@ -21,6 +21,10 @@ class UserGroupRepository
     {
         $this->entityManager->persist($userGroup);
         $this->entityManager->flush();
+    }
+
+    public function findAll() {
+        return $this->entityManager->getRepository(UserGroup::class)->findAll();
     }
 
 }

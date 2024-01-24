@@ -1,14 +1,14 @@
 <?php
-namespace YourNamespace\infrastructure\controllers\userController;
+namespace workanaSoftexpert\infrastructure\controllers\userController;
 
 use Doctrine\ORM\Exception\NotSupported;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\TransactionRequiredException;
-use YourNamespace\applications\services\jwtService\JwtService;
-use YourNamespace\applications\services\userService\UserService;
-use YourNamespace\core\dto\UserCreateRequest\UserCreateRequest;
-use YourNamespace\core\dto\UserResponse\UserResponse;
+use workanaSoftexpert\applications\services\jwtService\JwtService;
+use workanaSoftexpert\applications\services\userService\UserService;
+use workanaSoftexpert\core\dto\userCreateRequest\UserCreateRequest;
+use workanaSoftexpert\core\dto\userResponse\UserResponse;
 
 class UserController
 {
@@ -19,6 +19,13 @@ class UserController
     {
         $this->userService = $userService;
         $this->jwtService = $jwtService;
+    }
+
+    public function getAllUsers() {
+        $users = $this->userService->getAllUsers();
+        return json_encode(array_map(function($user) {
+            return new UserResponse($user);
+        }, $users));
     }
 
     /**
@@ -38,14 +45,18 @@ class UserController
     }
 
     /**
+     * Atualiza um usuário existente.
+     *
+     * @param array $requestData Dados do usuário para atualização.
+     * @param int $userId ID do usuário a ser atualizado.
+     * @return string JSON response.
      * @throws OptimisticLockException
-     * @throws TransactionRequiredException
      * @throws ORMException
+     * @throws TransactionRequiredException
      */
-    public function updateUser($request, $userId)
+    public function updateUser($requestData, $userId): string
     {
-        $userData = $request->getParsedBody();
-        $this->userService->updateUser($userId, $userData);
+        $this->userService->updateUser($userId, $requestData);
 
         $updatedUser = $this->userService->getUserById($userId);
         $userResponse = new UserResponse($updatedUser);
@@ -68,15 +79,21 @@ class UserController
     /**
      * @throws NotSupported
      */
-    public function login($username, $password)
-    {
+    public function login($username, $password) {
         $user = $this->userService->getUserByUsername($username);
         if (!$user || !$this->verifyPassword($password, $user->getPassword())) {
             return null;
         }
 
         $payload = ['userId' => $user->getId(), 'username' => $user->getUsername()];
-        return $this->jwtService->createToken($payload);
+        $token = $this->jwtService->createToken($payload);
+
+        $userResponse = new UserResponse($user);
+
+        return [
+            'token' => $token,
+            'user' => $userResponse
+        ];
     }
 
     private function verifyPassword($inputPassword, $storedPassword): bool

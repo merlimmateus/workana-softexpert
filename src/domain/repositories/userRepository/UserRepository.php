@@ -1,12 +1,12 @@
 <?php
-namespace YourNamespace\domain\repositories\userRepository;
+namespace workanaSoftexpert\domain\repositories\userRepository;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\NotSupported;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\TransactionRequiredException;
-use YourNamespace\domain\entities\user\User;
+use workanaSoftexpert\domain\entities\user\User;
 
 class UserRepository
 {
@@ -54,4 +54,9 @@ class UserRepository
     {
         return $this->entityManager->getRepository(User::class)->findOneBy(['username' => $username]);
     }
+
+    public function findAll() {
+        return $this->entityManager->getRepository(User::class)->findAll();
+    }
+
 }

@@ -1,5 +1,5 @@
 <?php
-namespace YourNamespace\domain\entities\productType;
+namespace workanaSoftexpert\domain\entities\productType;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,6 +25,38 @@ class ProductType
      * @ORM\Column(type="float")
      */
     private $taxPercentage;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="workanaSoftexpert\domain\entities\user\User")
+     * @ORM\JoinColumn(name="created_by_user_id", referencedColumnName="id")
+     */
+    private $createdByUser;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $excluded = false;
+
+    public function isExcluded(): bool
+    {
+        return $this->excluded;
+    }
+
+    public function setExcluded($excluded)
+    {
+        $this->excluded = $excluded;
+    }
+
+    public function getCreatedByUser()
+    {
+        return $this->createdByUser;
+    }
+
+    public function setCreatedByUser($createdByUser)
+    {
+        $this->createdByUser = $createdByUser;
+    }
+
 
     /**
      * @return mixed
