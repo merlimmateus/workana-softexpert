@@ -5,7 +5,7 @@
 This is the backend repository of the Workana SoftExpert Sales System. It provides the server-side logic and API for managing products, product types, sales, and user authentication.
 
 ## Installation and Setup
-
+   
 ### Prerequisites
 
 - PHP 7.4.0 or higher
@@ -17,7 +17,7 @@ This is the backend repository of the Workana SoftExpert Sales System. It provid
 1. Create a PostgreSQL database named `workanasoft`.
 2. Restore the database using the provided dump file located at the root of the project.
    ```bash
-   pg_restore -U your_username -d workanasoft workanasoft.dump
+   pg_restore -U postgres -d workanasoft workanasoft;
    ```
 
 ### Backend Setup
