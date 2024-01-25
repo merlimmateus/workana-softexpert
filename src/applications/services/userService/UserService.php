@@ -47,39 +47,6 @@ class UserService
      * @throws ORMException
      * @throws TransactionRequiredException
      */
-    public function updateUser($userId, $userData)
-    {
-        $user = $this->userRepository->find($userId);
-
-        if (!$user) {
-            throw new \RuntimeException("User not found.");
-        }
-
-        $user->setUsername($userData['username'] ?? $user->getUsername());
-        if (!empty($userData['password'])) {
-            $user->setPassword(password_hash($userData['password'], PASSWORD_DEFAULT));
-        }
-        $user->setName($userData['name'] ?? $user->getName());
-        if (isset($userData['isActive'])) {
-            $user->setIsActive($userData['isActive']);
-        }
-
-        if (isset($userData['groupId'])) {
-            $userGroup = $this->userGroupRepository->find($userData['groupId']);
-            if (!$userGroup) {
-                throw new \RuntimeException("UserGroup with id {$userData['groupId']} not found.");
-            }
-            $user->setGroup($userGroup);
-        }
-
-        $this->userRepository->save($user);
-    }
-
-    /**
-     * @throws OptimisticLockException
-     * @throws ORMException
-     * @throws TransactionRequiredException
-     */
     public function deleteUser($userId)
     {
         $user = $this->userRepository->find($userId);
