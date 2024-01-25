@@ -1,103 +1,107 @@
-## Backend ReadMe
+## Frontend ReadMe
 
-# Workana SoftExpert Sales System - Backend
+# Workana SoftExpert Sales System - Frontend
 
-This is the backend repository of the Workana SoftExpert Sales System. It provides the server-side logic and API for managing products, product types, sales, and user authentication.
+This is the frontend repository of the Workana SoftExpert Sales System. It provides the user interface for managing products, sales, and user authentication.
 
 ## Installation and Setup
-   
+
 ### Prerequisites
 
-- PHP 7.4.0 or higher
-- PostgreSQL
-- Composer
-- Docker and Docker Compose (optional, for running in containers)
+- Node.js 18.3.0
+- npm or yarn
 
-### Database Setup
+### Frontend Setup
 
-1. Create a PostgreSQL database named `workanasoft`.
-
+1. Navigate to the frontend directory:
    ```bash
-   createdb workanasoft
+   cd workana-softexpert-frontend
    ```
 
-2. Restore the database using the provided dump file located at the root of the project.
-
+2. Install the frontend dependencies using npm or yarn:
    ```bash
-   psql -U username -h hostname -p port -d dbname < backup.sql
+   npm install
    ```
 
-### Backend Setup
-
-#### Running without Docker (Development)
-
-1. Navigate to the backend directory:
-
+3. Build the frontend for production:
    ```bash
-   cd workana-softexpert
+   npm run build
    ```
 
-2. Install the backend dependencies using Composer:
-
+4. Install the serve package globally:
    ```bash
-   composer install
+   npm install -g serve
    ```
 
-3. Start the PHP server:
-
+5. Start the frontend production server:
    ```bash
-   php -S localhost:8080 -t public
+   serve -s build -l 3000
    ```
 
-The backend will be accessible at [http://localhost:8080](http://localhost:8080).
-
-#### Running with Docker (Development)
-
-1. Ensure you have Docker and Docker Compose installed.
-
-2. Navigate to the root directory of the project where the `docker-compose.yml` file is located.
-
-3. Build and start the Docker containers:
-
-   ```bash
-   docker-compose up --build
-   ```
-
-4. The backend will be accessible at [http://localhost:8080](http://localhost:8080).
-
-#### Running PHPUnit Tests
-
-To run PHPUnit tests, use the following command:
-
-```bash
-composer test
-```
+The frontend will be accessible at [http://localhost:3000](http://localhost:3000).
 
 ## Features
 
-- **Products**: Create, update, get and delete products. Products must be associated with existing product types.
+The frontend provides the user interface for managing products, creating sales, and user authentication. Users can log in with different roles, including client, seller, and admin, each with different levels of access to the system.
 
-- **Product Types**: Create and delete product types. Available to sellers and administrators.
+### User Roles
 
-- **Sales**: Create sales by adding products and quantities to the cart. The system calculates the total price and taxes for each item in the sale.
+- `client`: Can access products and sales.
+- `seller`: Can access products, sales, and product types.
+- `adm`: Can access products, sales, product types, and user management.
 
-- **User Management** (For Admins): Manage users, including creating and deleting user accounts.
+### Default Users
 
-### Rules
+You can log in with the following default users:
 
-- To create a product, it must be associated with an existing and not excluded product type.
+- `client` User:
+   - Username: client
+   - Password: client
 
-- To create a sale, the product must exist and not be marked as excluded.
+- `seller` User:
+   - Username: seller
+   - Password: seller
 
-## Backend Stack
+- `adm` User:
+   - Username: adm
+   - Password: adm
 
-- PHP 8.3.2
-- Doctrine ORM
-- PostgreSQL
-- JWT Authentication
-- Hexagonal Architecture
-- PHPUnit (for testing)
+### Configure .env
 
-## Author
+Don't forget to set the .env file using your API_BASE_URL. Example below:
 
-- Mateus Merlim Mattos
+```bash
+REACT_APP_API_URL=http://localhost:8080
+```
+
+## Frontend Stack
+
+- React.js
+- Node.js 18.3.0
+- Bootstrap
+- Material-UI
+
+## Docker (Optional)
+
+If you prefer to run the frontend using Docker, you can use the provided Dockerfile and docker-compose.yaml.
+
+### Docker Setup
+
+1. Make sure you have Docker installed and configured on your system.
+
+2. Navigate to the frontend directory:
+   ```bash
+   cd workana-softexpert-frontend
+   ```
+
+3. Build the Docker image:
+   ```bash
+   docker build -t workana-frontend .
+   ```
+
+4. Run the Docker container:
+   ```bash
+   docker run -d -p 3000:3000 workana-frontend
+   ```
+
+The frontend will be accessible at [http://localhost:3000](http://localhost:3000) when running inside a Docker container.
