@@ -2,12 +2,11 @@
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 
-// Parâmetros de conexão com o banco de dados
 $connParams = [
     'dbname' => 'workanasoft',
     'user' => 'postgres',
     'password' => 'postgres',
-    'host' => 'localhost',
+    'host' => 'db',
     'driver' => 'pdo_pgsql',
 ];
 

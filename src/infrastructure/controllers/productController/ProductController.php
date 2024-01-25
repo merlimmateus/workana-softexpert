@@ -1,9 +1,6 @@
 <?php
 namespace workanaSoftexpert\infrastructure\controllers\productController;
 
-use Doctrine\ORM\Exception\ORMException;
-use Doctrine\ORM\OptimisticLockException;
-use Doctrine\ORM\TransactionRequiredException;
 use workanaSoftexpert\applications\services\productService\ProductService;
 use workanaSoftexpert\core\dto\productCreateRequest\ProductCreateRequest;
 use workanaSoftexpert\core\dto\productResponse\ProductResponse;
@@ -17,47 +14,53 @@ class ProductController
         $this->productService = $productService;
     }
 
-    /**
-     * @throws OptimisticLockException
-     * @throws TransactionRequiredException
-     * @throws ORMException
-     */
     public function createProduct($request)
     {
-        $productCreateRequest = new ProductCreateRequest($request);
-        $product = $this->productService->createProduct($productCreateRequest);
-        return json_encode(new ProductResponse($product));
+        try {
+            $productCreateRequest = new ProductCreateRequest($request);
+            $product = $this->productService->createProduct($productCreateRequest);
+            return json_encode(new ProductResponse($product));
+        } catch (\Exception $e) {
+            http_response_code(400);
+            return json_encode(['error' => 'Error creating product', 'details' => $e->getMessage()]);
+        }
     }
 
-    /**
-     * @throws OptimisticLockException
-     * @throws TransactionRequiredException
-     * @throws ORMException
-     */
     public function updateProduct($request, $productId)
     {
-        $productCreateRequest = new ProductCreateRequest($request);
-        $this->productService->updateProduct($productId, $productCreateRequest);
+        try {
+            $productCreateRequest = new ProductCreateRequest($request);
+            $this->productService->updateProduct($productId, $productCreateRequest);
 
-        $updatedProduct = $this->productService->getProductById($productId);
-        return json_encode(new ProductResponse($updatedProduct));
+            $updatedProduct = $this->productService->getProductById($productId);
+            return json_encode(new ProductResponse($updatedProduct));
+        } catch (\Exception $e) {
+            http_response_code(400);
+            return json_encode(['error' => 'Error updating product', 'details' => $e->getMessage()]);
+        }
     }
 
-    /**
-     * @throws OptimisticLockException
-     * @throws TransactionRequiredException
-     * @throws ORMException
-     */
     public function deleteProduct($productId)
     {
-        $this->productService->deleteProduct($productId);
-        return json_encode(['message' => 'Product successfully marked as deleted']);
+        try {
+            $this->productService->deleteProduct($productId);
+            return json_encode(['message' => 'Product successfully marked as deleted']);
+        } catch (\Exception $e) {
+            http_response_code(400);
+            return json_encode(['error' => 'Error deleting product', 'details' => $e->getMessage()]);
+        }
     }
 
-    public function getAllProducts() {
-        $products = $this->productService->getAllProducts();
-        return json_encode(array_map(function($product) {
-            return new ProductResponse($product);
-        }, $products));
+    public function getAllProducts()
+    {
+        try {
+            $products = $this->productService->getAllProducts();
+            return json_encode(array_map(function($product) {
+                return new ProductResponse($product);
+            }, $products));
+        } catch (\Exception $e) {
+            http_response_code(500);
+            return json_encode(['error' => 'Error fetching products', 'details' => $e->getMessage()]);
+        }
     }
 }

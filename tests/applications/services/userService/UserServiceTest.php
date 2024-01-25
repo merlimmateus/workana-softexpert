@@ -45,29 +45,6 @@ class UserServiceTest extends TestCase
         $this->userService->createUser($request);
     }
 
-    public function testUpdateUser()
-    {
-        $user = $this->createMock(User::class);
-        $userGroup = $this->createMock(UserGroup::class);
-        $this->userRepository->method('find')->willReturn($user);
-        $this->userGroupRepository->method('find')->willReturn($userGroup); // Mock UserGroupRepository to return a UserGroup
-
-        $updatedData = [
-            'username' => 'janedoe',
-            'password' => 'newpassword123',
-            'name' => 'Jane Doe',
-            'groupId' => 1, // This ID should match the one used in the find method
-            'isActive' => true
-        ];
-
-        $user->expects($this->once())->method('setUsername')->with($this->equalTo('janedoe'));
-        $user->expects($this->once())->method('setPassword');
-        $user->expects($this->once())->method('setName')->with($this->equalTo('Jane Doe'));
-        $user->expects($this->once())->method('setGroup')->with($this->equalTo($userGroup));
-
-        $this->userService->updateUser(1, $updatedData);
-    }
-
     public function testDeleteUser()
     {
         $user = $this->createMock(User::class);

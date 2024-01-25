@@ -161,7 +161,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="PHPUnit.ProductServiceTest">
+  <component name="RunManager" selected="PHPUnit.SellServiceTest.testUpdateSell">
     <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
       <method v="2" />
@@ -174,8 +174,8 @@
       <TestRunner class="applications\services\productService\ProductServiceTest" file="$PROJECT_DIR$/tests/applications/services/productService/ProductServiceTest.php" method="testGetAllProducts" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="UserServiceTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="applications\services\userService\UserServiceTest" file="$PROJECT_DIR$/tests/applications/services/userService/UserServiceTest.php" scope="Class" />
+    <configuration name="SellServiceTest.testUpdateSell" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="applications\services\sellService\SellServiceTest" file="$PROJECT_DIR$/tests/applications/services/sellService/SellServiceTest.php" method="testUpdateSell" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="UserServiceTest.testUpdateUser" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -188,11 +188,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.SellServiceTest.testUpdateSell" />
         <item itemvalue="PHPUnit.ProductServiceTest.testGetAllProducts" />
         <item itemvalue="PHPUnit.tests" />
         <item itemvalue="PHPUnit.ProductServiceTest" />
         <item itemvalue="PHPUnit.UserServiceTest.testUpdateUser" />
-        <item itemvalue="PHPUnit.UserServiceTest" />
       </list>
     </recent_temporary>
   </component>

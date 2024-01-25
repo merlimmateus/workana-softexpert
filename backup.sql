@@ -26,9 +26,9 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.product_types (
     id integer NOT NULL,
+    created_by_user_id integer,
     name character varying(255) NOT NULL,
     taxpercentage double precision NOT NULL,
-    created_by_user_id integer,
     excluded boolean NOT NULL
 );
 
@@ -56,11 +56,11 @@ ALTER TABLE public.product_types_id_seq OWNER TO postgres;
 CREATE TABLE public.products (
     id integer NOT NULL,
     product_type_id integer,
+    created_by_user_id integer,
     name character varying(255) NOT NULL,
     price double precision NOT NULL,
     createdat timestamp(0) without time zone NOT NULL,
     updatedat timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
-    created_by_user_id integer,
     excluded boolean NOT NULL
 );
 
@@ -89,6 +89,7 @@ CREATE TABLE public.sells (
     id integer NOT NULL,
     product_id integer,
     created_by_user_id integer,
+    name character varying(255) NOT NULL,
     quantity integer NOT NULL,
     createdat timestamp(0) without time zone NOT NULL,
     excluded boolean NOT NULL
@@ -171,18 +172,10 @@ ALTER TABLE public.users_id_seq OWNER TO postgres;
 -- Data for Name: product_types; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.product_types (id, name, taxpercentage, created_by_user_id, excluded) FROM stdin;
-14	Tipo de Produto Exemplo 7	10	1	f
-15	Tipo de Produto Exemplo 7	10	1	f
-13	Produto Limpeza	15	1	f
-1	Tipo de Produto Exemplo	10	1	t
-3	Tipo de Produto Exemplo	10	1	t
-4	Tipo de Produto Exemplo	10	1	t
-5	Tipo de Produto Exemplo	10	1	t
-6	Tipo de Produto Exemplo	10	1	t
-7	Tipo de Produto Exemplo 4	10	1	t
-12	Tipo de Produto Exemplo 5	10	1	t
-2	Produto Atualizado	10	1	t
+COPY public.product_types (id, created_by_user_id, name, taxpercentage, excluded) FROM stdin;
+1	1	Eletronic	15	f
+2	1	Services	5	f
+3	1	Accessory equipment	20	f
 \.
 
 
@@ -190,15 +183,11 @@ COPY public.product_types (id, name, taxpercentage, created_by_user_id, excluded
 -- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.products (id, product_type_id, name, price, createdat, updatedat, created_by_user_id, excluded) FROM stdin;
-7	15	Produto Exemplo 1	100	2024-01-23 09:55:21	\N	1	f
-5	15	Produto Exemplo 1	100	2024-01-23 09:52:45	\N	1	t
-6	15	Produto Exemplo 1	100	2024-01-23 09:54:18	\N	1	t
-8	15	Produto Atualizado	200	2024-01-23 09:56:15	2024-01-23 12:27:07	1	f
-9	15	Produto Exemplo 5	100	2024-01-23 09:56:49	\N	1	t
-10	15	Produto Exemplo 5	100	2024-01-23 12:35:54	\N	1	f
-11	15	Produto Exemplo 10	100	2024-01-23 12:36:27	\N	1	f
-1	15	Produto Exemplo	100	2024-01-23 09:42:09	\N	1	t
+COPY public.products (id, product_type_id, created_by_user_id, name, price, createdat, updatedat, excluded) FROM stdin;
+1	2	1	Cellphone	800	2024-01-25 09:34:41	2024-01-25 09:40:58	f
+2	1	1	Poco F3	400	2024-01-25 09:41:41	\N	f
+3	1	1	Poco f4	450	2024-01-25 09:42:28	2024-01-25 09:44:02	f
+4	3	1	Forbidden Product	0	2024-01-25 09:55:01	\N	t
 \.
 
 
@@ -206,12 +195,8 @@ COPY public.products (id, product_type_id, name, price, createdat, updatedat, cr
 -- Data for Name: sells; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.sells (id, product_id, created_by_user_id, quantity, createdat, excluded) FROM stdin;
-1	1	\N	5	2024-01-23 10:51:46	f
-2	1	\N	5	2024-01-23 10:52:20	f
-3	1	1	5	2024-01-23 10:55:33	f
-4	1	1	5	2024-01-23 12:35:19	f
-5	1	1	2	2024-01-23 13:14:47	f
+COPY public.sells (id, product_id, created_by_user_id, name, quantity, createdat, excluded) FROM stdin;
+1	1	1	CellPhone Cells	10	2024-01-25 09:55:38	f
 \.
 
 
@@ -220,7 +205,9 @@ COPY public.sells (id, product_id, created_by_user_id, quantity, createdat, excl
 --
 
 COPY public.user_groups (id, name) FROM stdin;
-1	test
+1	client
+2	adm
+3	seller
 \.
 
 
@@ -229,8 +216,9 @@ COPY public.user_groups (id, name) FROM stdin;
 --
 
 COPY public.users (id, group_id, username, password, name, isactive) FROM stdin;
-1	1	test	$2y$10$1zLuH2uPTZ5l8oJXjc3t2ObfiIHLWP1hHrx5X/hGCek/J8u4Of0dC	Test	t
-2	1	testEdit2	$2y$10$uTM5B9eO/moZmtKCSzPcued2T.IU.yIpdS9Tu6GxzBfcSlVekblj.	Updated Name	f
+1	2	adm	$2y$10$soVIK.1CdMS4XaeUZP5d8OVXgipGLJ.2IR32iJDS1B9QzkXoLWsAi	adm	t
+2	1	client	$2y$10$9OByF9y65rCfRn0Nsb9Rw.BfCE7l8bpo7eYS0WQJOla22pU8U6I6q	client	t
+3	3	seller	$2y$10$3bpF7K9./zXW/6JhN7PAXO06n09Jie9Pw/8LlL2UXIM6t1zqcNova	seller	t
 \.
 
 
@@ -238,21 +226,21 @@ COPY public.users (id, group_id, username, password, name, isactive) FROM stdin;
 -- Name: product_types_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.product_types_id_seq', 15, true);
+SELECT pg_catalog.setval('public.product_types_id_seq', 3, true);
 
 
 --
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.products_id_seq', 11, true);
+SELECT pg_catalog.setval('public.products_id_seq', 4, true);
 
 
 --
 -- Name: sells_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sells_id_seq', 5, true);
+SELECT pg_catalog.setval('public.sells_id_seq', 1, true);
 
 
 --
@@ -266,7 +254,7 @@ SELECT pg_catalog.setval('public.user_groups_id_seq', 3, true);
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 2, true);
+SELECT pg_catalog.setval('public.users_id_seq', 3, true);
 
 
 --

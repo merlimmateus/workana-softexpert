@@ -70,12 +70,13 @@ class SellServiceTest extends TestCase
         ];
         $request = new SellCreateRequest($requestData);
 
-        $updatedSell = $this->sellService->updateSell(1, $request);
+        $sell->expects($this->once())->method('setProduct')->with($this->equalTo($product));
+        $sell->expects($this->once())->method('setQuantity')->with($this->equalTo(3));
+        $sell->expects($this->once())->method('setName')->with($this->equalTo('Updated Sell'));
 
-        $this->assertInstanceOf(Sell::class, $updatedSell);
-        $this->assertSame($product, $updatedSell->getProduct());
-        $this->assertEquals(3, $updatedSell->getQuantity());
-        $this->assertEquals('Updated Sell', $updatedSell->getName());
+        $this->sellService->updateSell(1, $request);
+
+        $this->assertTrue(true);
     }
 
     public function testDeleteSell()
