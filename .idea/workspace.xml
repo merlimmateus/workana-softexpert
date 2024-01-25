@@ -124,6 +124,9 @@
       <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
     </include_path>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -132,43 +135,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "PHP Script.index.php.executor": "Run",
-    "PHPUnit.ProductServiceTest.executor": "Run",
-    "PHPUnit.ProductTest.executor": "Run",
-    "PHPUnit.ProductTypeServiceTest.executor": "Run",
-    "PHPUnit.ProductTypeTest.executor": "Run",
-    "PHPUnit.SellTest.executor": "Run",
-    "PHPUnit.UserGroupServiceTest.executor": "Run",
-    "PHPUnit.UserGroupTest.executor": "Run",
-    "PHPUnit.UserServiceTest.executor": "Run",
-    "PHPUnit.UserServiceTest.testUpdateUser.executor": "Run",
-    "PHPUnit.UserTest.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/merli/projects/workana/workana-softexpert",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "php.add.doc.comment.for.fields.panel.add.php.doc.for.all.properties": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;PHP Script.index.php.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.ProductServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.ProductTest.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.ProductTypeServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.ProductTypeTest.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.SellTest.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.UserGroupServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.UserGroupTest.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.UserServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.UserServiceTest.testUpdateUser.executor&quot;: &quot;Run&quot;,
+    &quot;PHPUnit.UserTest.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/merli/projects/workana/workana-softexpert&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;php.add.doc.comment.for.fields.panel.add.php.doc.for.all.properties&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="PHPUnit.ProductServiceTest">
+    <configuration name="Main" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner configuration_file="$PROJECT_DIR$/phpunit.xml" scope="XML" use_alternative_configuration_file="true" />
+      <method v="2" />
+    </configuration>
     <configuration name="ProductServiceTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="applications\services\productService\ProductServiceTest" file="$PROJECT_DIR$/tests/applications/services/productService/ProductServiceTest.php" scope="Class" />
       <method v="2" />
     </configuration>
-    <configuration name="ProductTypeServiceTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="applications\services\productTypeService\ProductTypeServiceTest" file="$PROJECT_DIR$/tests/applications/services/productTypeService/ProductTypeServiceTest.php" scope="Class" />
-      <method v="2" />
-    </configuration>
-    <configuration name="UserGroupServiceTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="applications\services\userGroupService\UserGroupServiceTest" file="$PROJECT_DIR$/tests/applications/services/userGroupService/UserGroupServiceTest.php" scope="Class" />
+    <configuration name="ProductServiceTest.testGetAllProducts" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="applications\services\productService\ProductServiceTest" file="$PROJECT_DIR$/tests/applications/services/productService/ProductServiceTest.php" method="testGetAllProducts" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="UserServiceTest" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -179,13 +182,17 @@
       <TestRunner class="applications\services\userService\UserServiceTest" file="$PROJECT_DIR$/tests/applications/services/userService/UserServiceTest.php" method="testUpdateUser" scope="Method" />
       <method v="2" />
     </configuration>
+    <configuration name="tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner directory="$PROJECT_DIR$/tests" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHPUnit.ProductServiceTest.testGetAllProducts" />
+        <item itemvalue="PHPUnit.tests" />
         <item itemvalue="PHPUnit.ProductServiceTest" />
         <item itemvalue="PHPUnit.UserServiceTest.testUpdateUser" />
         <item itemvalue="PHPUnit.UserServiceTest" />
-        <item itemvalue="PHPUnit.UserGroupServiceTest" />
-        <item itemvalue="PHPUnit.ProductTypeServiceTest" />
       </list>
     </recent_temporary>
   </component>

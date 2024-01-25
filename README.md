@@ -17,7 +17,7 @@ This is the backend repository of the Workana SoftExpert Sales System. It provid
 1. Create a PostgreSQL database named `workanasoft`.
 2. Restore the database using the provided dump file located at the root of the project.
    ```bash
-   pg_restore -U postgres -d workanasoft workanasoft;
+   psql -U username -h hostname -p port -d dbname < dev.sql
    ```
 
 ### Backend Setup
