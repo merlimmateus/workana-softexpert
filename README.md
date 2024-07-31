@@ -1,107 +1,69 @@
-## Frontend ReadMe
+## Backend ReadMe
 
-# Workana SoftExpert Sales System - Frontend
+# Workana SoftExpert Sales System - Backend
 
-This is the frontend repository of the Workana SoftExpert Sales System. It provides the user interface for managing products, sales, and user authentication.
+This is the backend repository of the Workana SoftExpert Sales System. It provides the server-side logic and API for managing products, product types, sales, and user authentication.
 
 ## Installation and Setup
-
+   
 ### Prerequisites
 
-- Node.js 18.3.0
-- npm or yarn
+- PHP 7.4.0 or higher
+- PostgreSQL
+- Composer
 
-### Frontend Setup
+### Database Setup
 
-1. Navigate to the frontend directory:
+1. Create a PostgreSQL database named `workanasoft`.
+2. Restore the database using the provided dump file located at the root of the project.
    ```bash
-   cd workana-softexpert-frontend
+   pg_restore -U postgres -d workanasoft workanasoft;
    ```
 
-2. Install the frontend dependencies using npm or yarn:
+### Backend Setup
+
+1. Navigate to the backend directory:
+
    ```bash
-   npm install
+   cd workana-softexpert
    ```
 
-3. Build the frontend for production:
+2. Install the backend dependencies using Composer:
    ```bash
-   npm run build
+   composer install
    ```
 
-4. Install the serve package globally:
+3. Start the PHP server:
    ```bash
-   npm install -g serve
+   php -S localhost:8080 -t public
    ```
 
-5. Start the frontend production server:
-   ```bash
-   serve -s build -l 3000
-   ```
-
-The frontend will be accessible at [http://localhost:3000](http://localhost:3000).
+The backend will be accessible at [http://localhost:8080](http://localhost:8080).
 
 ## Features
 
-The frontend provides the user interface for managing products, creating sales, and user authentication. Users can log in with different roles, including client, seller, and admin, each with different levels of access to the system.
+- **Products**: Create, update, get and delete products. Products must be associated with existing product types.
 
-### User Roles
+- **Product Types**: Create and delete product types. Available to sellers and administrators.
 
-- `client`: Can access products and sales.
-- `seller`: Can access products, sales, and product types.
-- `adm`: Can access products, sales, product types, and user management.
+- **Sales**: Create sales by adding products and quantities to the cart. The system calculates the total price and taxes for each item in the sale.
 
-### Default Users
+- **User Management** (For Admins): Manage users, including creating and deleting user accounts.
 
-You can log in with the following default users:
+### Rules
 
-- `client` User:
-   - Username: client
-   - Password: client
+- To create a product, it must be associated with an existing and not excluded product type.
 
-- `seller` User:
-   - Username: seller
-   - Password: seller
+- To create a sale, the product must exist and not be marked as excluded.
 
-- `adm` User:
-   - Username: adm
-   - Password: adm
+## Backend Stack
 
-### Configure .env
+- PHP 8.3.2
+- Doctrine ORM
+- PostgreSQL
+- JWT Authentication
+- Hexagonal Architecture
 
-Don't forget to set the .env file using your API_BASE_URL. Example below:
+## Author
 
-```bash
-REACT_APP_API_URL=http://localhost:8080
-```
-
-## Frontend Stack
-
-- React.js
-- Node.js 18.3.0
-- Bootstrap
-- Material-UI
-
-## Docker (Optional)
-
-If you prefer to run the frontend using Docker, you can use the provided Dockerfile and docker-compose.yaml.
-
-### Docker Setup
-
-1. Make sure you have Docker installed and configured on your system.
-
-2. Navigate to the frontend directory:
-   ```bash
-   cd workana-softexpert-frontend
-   ```
-
-3. Build the Docker image:
-   ```bash
-   docker build -t workana-frontend .
-   ```
-
-4. Run the Docker container:
-   ```bash
-   docker run -d -p 3000:3000 workana-frontend
-   ```
-
-The frontend will be accessible at [http://localhost:3000](http://localhost:3000) when running inside a Docker container.
+- Mateus Merlim Mattos
